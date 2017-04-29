@@ -1,0 +1,30 @@
+{% extends 'check/base.html' %}
+{% block content %}
+<form action="/search/" method="post"> 
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Search">
+</form>
+<br />
+
+<table id="search">
+            <tr id="field_name">
+                <td>품번</td>
+                <td>품명</td>
+                <td>세부내역</td>
+                <td>저장빈</td>
+                <td>수량</td>
+                <td>업데이트</td>
+            </tr>
+        {% for result in results %}
+            <tr>
+                <td>{{ result.no }}</td>
+                <td>{{ result.name }}</td>
+                <td>{{ result.description }}</td>
+                <td>{{ result.slot }}</td>
+                <td>{{ result.amount }}</td>
+                <td>{{ result.updateDate }}</td>
+            </tr>
+        {% endfor %}
+{% endblock %}
+</table>>

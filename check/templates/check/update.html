@@ -1,0 +1,14 @@
+{% extends 'check/base.html' %}
+{% block content %}
+<form action="/update/" method="post"> 
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+</form>
+
+<div id="update">
+        {% for result in results %}
+            <ul>{{ result }}</ul>
+        {% endfor %}
+{% endblock %}
+</div>
