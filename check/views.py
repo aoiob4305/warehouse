@@ -6,9 +6,9 @@ from .forms import updateForm
 from .parse import parse
 
 def item_main(request):
-    items = []
+    results = []
 
-    return render(request, 'check\main.html', {'items': items})
+    return render(request, 'check\main.html', {'results': results})
 
 def item_update(request):
     results = []
