@@ -1,3 +1,5 @@
+#-*- coding:utf-8 -*-
+
 from django.shortcuts import render
 
 from .models import item
@@ -10,7 +12,7 @@ def item_main(request):
     results = "품종: %d" % (item.objects.count())
     form = searchForm()
 
-    return render(request, 'check\main.html', {'form': form, 'results': results})
+    return render(request, 'check/main.html', {'form': form, 'results': results})
 
 def item_update(request):
     results = []
@@ -24,7 +26,7 @@ def item_update(request):
     else:
         form = uploadFileForm()
 
-    return render(request, 'check\\update.html', {'form': form, 'results': results})
+    return render(request, 'check/update.html', {'form': form, 'results': results})
 
 def item_search(request):
     results = []
@@ -47,4 +49,4 @@ def item_search(request):
                 results.append('no result')
     else:
         form = searchForm()
-    return render(request,'check\search.html', {'form': form, 'results': results})
+    return render(request,'check/search.html', {'form': form, 'results': results})

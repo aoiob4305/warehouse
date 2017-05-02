@@ -1,7 +1,10 @@
+#-*- coding:utf-8 -*-
+
 from .models import item
 
 def parse(filename):
-    f = open(filename,'r',encoding='utf8')
+#    f = open(filename,'r',encoding='utf8')
+    f = open(filename,'r')
     with f:
         rows = f.readlines()[3:]
         errors = []
