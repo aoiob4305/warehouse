@@ -1,5 +1,7 @@
 #-*- coding:utf-8 -*-
 
+import os
+
 from django.shortcuts import render
 
 from .models import item
@@ -7,6 +9,9 @@ from .forms import searchForm
 from .forms import updateForm
 from .forms import uploadFileForm
 from .parse import parse
+
+#TEMP_FILE = os.path.join(os.getcwd(), 'temp.txt')
+TEMP_FILE = '/home/younguk/work/warehouse/temp.txt'
 
 def item_main(request):
     results = "품종: %d" % (item.objects.count())
@@ -19,10 +24,10 @@ def item_update(request):
     if request.method == 'POST':
         form = uploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            with open('temp.txt', 'wb') as destination:
+            with open(TEMP_FILE, 'wb') as destination:
                 for chunk in request.FILES['file']:
                     destination.write(chunk)
-                results = parse('temp.txt')
+                results = parse(TEMP_FILE)
     else:
         form = uploadFileForm()
 
