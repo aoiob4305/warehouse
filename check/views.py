@@ -3,19 +3,26 @@ from django.shortcuts import render
 from .models import item
 from .forms import searchForm
 from .forms import updateForm
+from .forms import uploadFileForm
 from .parse import parse
 
 def item_main(request):
-    results = []
+    results = "품종: %d" % (item.objects.count())
+    form = searchForm()
 
-    return render(request, 'check\main.html', {'results': results})
+    return render(request, 'check\main.html', {'form': form, 'results': results})
 
 def item_update(request):
     results = []
-    form = updateForm(request.POST)
     if request.method == 'POST':
+        form = uploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            results = parse(form.cleaned_data['filename'])
+            with open('temp.txt', 'wb') as destination:
+                for chunk in request.FILES['file']:
+                    destination.write(chunk)
+                results = parse('temp.txt')
+    else:
+        form = uploadFileForm()
 
     return render(request, 'check\\update.html', {'form': form, 'results': results})
 

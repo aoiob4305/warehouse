@@ -1,24 +1,53 @@
 <!doctype html>
 {% load static %}
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+
 <html lang=ko>
     <head>
         <title>Main Page</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!--        <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+        <header id="page_header">
+            <h2>재고검색</h2>
+            <nav>
+                <a href="/">Main</a>
+                <a href="/search/">검색</a>
+                <a href="/update/">업데이트</a>
+            </nav>
+        </header>
     </head>
     <body>
-        <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}">
-        </script>
+        <!-- <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}">
+        </script> -->
         <script>
             {% block script %}
             {% endblock %}
         </script>
-        <div class="page-header">
-            <h1><a href="/">재고 관리</a></h1>
-        </div>
-        <div class="content container">
+
+        <section id="sidebar">
+            <header>
+            </header>
+            <nav>
+            </nav>
+        </section>
+
+        <section id="content">
+            <header>
+            </header>
+            <article class="content">
             {% block content %}
             {% endblock %}
-        </div>
+            </article>
+            <footer>
+            </footer>
+        </section>
+
+        <footer id="page_footer">
+        </footer>
     </body>
 </html>

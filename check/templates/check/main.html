@@ -1,7 +1,14 @@
 {% extends 'check/base.html' %}
 {% block content %}
-<h2>재고조회</h2>
+<form action="/search/" method="post"> 
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Search">
+</form>
+<br />
+
 <div>
     {{ results }}
 </div>
+
 {% endblock %}

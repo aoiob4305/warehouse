@@ -7,3 +7,6 @@ class searchForm(forms.Form):
 
 class updateForm(forms.Form):
     filename = forms.CharField(label='파일명', max_length=20)
+
+class uploadFileForm(forms.Form):
+    file = forms.FileField()
