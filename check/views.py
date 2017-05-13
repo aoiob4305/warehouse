@@ -27,11 +27,11 @@ def item_update(request):
             with open(TEMP_FILE, 'wb') as destination:
                 for chunk in request.FILES['file']:
                     destination.write(chunk)
-                results = parse(TEMP_FILE)
+                errors, results = parse(TEMP_FILE)
     else:
         form = uploadFileForm()
 
-    return render(request, 'check/update.html', {'form': form, 'results': results})
+    return render(request, 'check/update.html', {'form': form, 'errors': errors, 'results': results})
 
 def item_search(request):
     results = []
