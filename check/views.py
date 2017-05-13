@@ -15,12 +15,14 @@ TEMP_FILE = '/home/younguk/work/warehouse/temp.txt'
 
 def item_main(request):
     results = "품종: %d" % (item.objects.count())
-    form = searchForm()
+    #form = searchForm()
 
-    return render(request, 'check/main.html', {'form': form, 'results': results})
+    #return render(request, 'check/main.html', {'form': form, 'results': results})
+    return render(request, 'check/main.html', {'results': results})
 
 def item_update(request):
-    results = []
+	errors = []
+	results = {}
     if request.method == 'POST':
         form = uploadFileForm(request.POST, request.FILES)
         if form.is_valid():

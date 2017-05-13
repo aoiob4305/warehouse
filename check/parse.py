@@ -19,10 +19,10 @@ def parse(filename):
                 #수량 이상 시 이상표시
                 try:
                     data[8] = int(data[8])
-					results['nornal'] = results['normal'] + 1
+                    results['nornal'] = results['normal'] + 1
                 except ValueError:
                     data[8] = '9999'
-					results['valueerror'] = results['valueerror'] + 1
+                    results['valueerror'] = results['valueerror'] + 1
                     errors.append(data)
                 
                 querySet = item.objects.filter(no = data[0])
@@ -52,9 +52,9 @@ def parse(filename):
                 else:
                     querySet[0].amount = data[8]
                     querySet[0].save()
-					results['update'] = results['update'] + 1
+                    results['update'] = results['update'] + 1
             else:
-				results['fielderror'] = results['fielderror'] + 1
+                results['fielderror'] = results['fielderror'] + 1
                 errors.append(data)
 
     return errors
