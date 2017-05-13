@@ -1,9 +1,14 @@
 {% extends 'check/base.html' %}
+
+{% load bootstrap3 %}
+
 {% block content %}
 <form action="/ware/update/" method="post" enctype="multipart/form-data"> 
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Update">
+<!--    <input type="submit" value="Update">
+-->
+	{% bootstrap_button "upload" button_type="submit" %}
 </form>
 
 <div id="update">

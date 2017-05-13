@@ -122,3 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+BOOTSTRAP3 = {
+	'jquery_url': '//code.jquery.com/jquery.min.hs',
+	'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/',
+}

@@ -4,6 +4,9 @@ from .models import item
 
 def parse(filename):
 #    f = open(filename,'r',encoding='utf8')
+	# 결과값: 정상, 업데이트, 숫자이상, 필드이상
+    results = {'normal': 0, 'update': 0, 'valueerror': 0, 'fielderror': 0}
+
     f = open(filename,'r')
     with f:
         rows = f.readlines()[3:]
@@ -16,9 +19,11 @@ def parse(filename):
                 #수량 이상 시 이상표시
                 try:
                     data[8] = int(data[8])
+					results['nornal'] = results['normal'] + 1
                 except ValueError:
                     data[8] = '9999'
-                errors.append(data)
+					results['valueerror'] = results['valueerror'] + 1
+                    errors.append(data)
                 
                 querySet = item.objects.filter(no = data[0])
                 if querySet.exists() == False:
@@ -44,7 +49,12 @@ def parse(filename):
                             itemUsage = data[19]
                     )
                     db.save()
+                else:
+                    querySet[0].amount = data[8]
+                    querySet[0].save()
+					results['update'] = results['update'] + 1
             else:
+				results['fielderror'] = results['fielderror'] + 1
                 errors.append(data)
 
     return errors
