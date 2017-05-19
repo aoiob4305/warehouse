@@ -9,9 +9,10 @@
 <!--    <input type="submit" value="Search"> -->
 	{% bootstrap_button "Search" button_type="submit" %}
 </form>
-<br />
-
+<br>
+<p><strong> 검색결과: {{ results|length }} 개</strong></p>
 <table id="search">
+        {% if result != null %}
             <tr id="field_name">
                 <td>품번</td>
                 <td>품명</td>
@@ -20,6 +21,7 @@
                 <td>수량</td>
                 <td>업데이트</td>
             </tr>
+		{% endif %}
         {% for result in results %}
             <tr>
                 <td>{{ result.no }}</td>

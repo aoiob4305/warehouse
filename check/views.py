@@ -21,8 +21,6 @@ def item_main(request):
     return render(request, 'check/main.html', {'results': results})
 
 def item_update(request):
-	errors = []
-	results = {}
     if request.method == 'POST':
         form = uploadFileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,10 +28,10 @@ def item_update(request):
                 for chunk in request.FILES['file']:
                     destination.write(chunk)
                 errors, results = parse(TEMP_FILE)
+                return render(request, 'check/update.html', {'form': form, 'errors': errors, 'results': results})
     else:
         form = uploadFileForm()
-
-    return render(request, 'check/update.html', {'form': form, 'errors': errors, 'results': results})
+        return render(request, 'check/update.html', {'form': form})
 
 def item_search(request):
     results = []

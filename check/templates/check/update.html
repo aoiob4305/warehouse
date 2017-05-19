@@ -12,9 +12,11 @@
 </form>
 
 <div id="update">
+        <strong> 업데이트 결과 </strong>
         {% for result in results %}
-            <ul>{{ result }}</ul>
+            <ul>{% cycle '신규' '업데이트' '값에러' '필드에러' %} {{ result }}</ul>
         {% endfor %}
+
 		{% for error in errors %}
             <ul>{{ errors }}</ul>
         {% endfor %}

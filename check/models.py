@@ -29,7 +29,7 @@ class item(models.Model):
         self.save()
 
     def __str__(self):
-        return "%s|%s|%s|%d|%s" % (self.no, self.name, self.description, self.amount, self.updateDate)
+        return "%s %s %s %d %s" % (self.no, self.name, self.description, self.amount, self.updateDate)
 
 class itemcheck(models.Model):
     no = models.ForeignKey('item')

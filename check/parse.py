@@ -1,13 +1,18 @@
 #-*- coding:utf-8 -*-
 
 from .models import item
+from django.core.exceptions import ObjectDoesNotExist
+
+from datetime import date
 
 def parse(filename):
 #    f = open(filename,'r',encoding='utf8')
 	# 결과값: 정상, 업데이트, 숫자이상, 필드이상
-    results = {'normal': 0, 'update': 0, 'valueerror': 0, 'fielderror': 0}
-
-    f = open(filename,'r')
+    count_normal = 0
+    count_update = 0
+    count_valueerror = 0
+    count_fielderror = 0
+    f = open(filename,'r',encoding='utf8')
     with f:
         rows = f.readlines()[3:]
         errors = []
@@ -19,14 +24,21 @@ def parse(filename):
                 #수량 이상 시 이상표시
                 try:
                     data[8] = int(data[8])
-                    results['nornal'] = results['normal'] + 1
                 except ValueError:
                     data[8] = '9999'
-                    results['valueerror'] = results['valueerror'] + 1
+                    count_valueerror = count_valueerror + 1
                     errors.append(data)
                 
-                querySet = item.objects.filter(no = data[0])
-                if querySet.exists() == False:
+                #querySet = item.objects.filter(no = data[0])
+                #if querySet.exists() == False:
+                try: 
+                    queryData = item.objects.get(no = data[0])
+                    if queryData.amount != data[8]:
+                        queryData.amount = data[8]
+                        queryData.updateDate = date.today() 
+                        queryData.save()
+                        count_update = count_update + 1
+                except ObjectDoesNotExist:
                     db = item(no = data[0],
                             group = data[1],
                             name = data[2],
@@ -48,13 +60,11 @@ def parse(filename):
                             itemGroup = data[18],
                             itemUsage = data[19]
                     )
+                    count_normal = count_normal + 1
                     db.save()
-                else:
-                    querySet[0].amount = data[8]
-                    querySet[0].save()
-                    results['update'] = results['update'] + 1
             else:
-                results['fielderror'] = results['fielderror'] + 1
+                count_fielderror = count_fielderror + 1
                 errors.append(data)
 
-    return errors
+    results = [count_normal, count_update, count_valueerror, count_fielderror]
+    return errors, results
