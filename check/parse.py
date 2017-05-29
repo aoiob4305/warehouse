@@ -3,7 +3,7 @@
 from .models import item
 from django.core.exceptions import ObjectDoesNotExist
 
-from datetime import date
+#from datetime import date
 
 def parse(filename):
 #    f = open(filename,'r',encoding='utf8')
@@ -35,7 +35,7 @@ def parse(filename):
                     queryData = item.objects.get(no = data[0])
                     if queryData.amount != data[8]:
                         queryData.amount = data[8]
-                        queryData.updateDate = date.today() 
+                        #queryData.updateDate = date.today() 
                         queryData.save()
                         count_update = count_update + 1
                 except ObjectDoesNotExist:

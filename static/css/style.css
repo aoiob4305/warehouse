@@ -1,0 +1,114 @@
+div {
+    width: 600px;
+}
+table {
+    border: 1px solid grey;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: #ccc;
+}
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+th {
+    color: white;
+    background-color: black;
+}
+
+tr#field_name {
+    text-align: center;
+}
+
+td {
+    padding: 5px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul.tabs {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    height: 32px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    width: 100%;
+    font-family:"dotum";
+    font-size:12px;
+}
+ul.tabs li {
+    float: left;
+    text-align:center;
+    cursor: pointer;
+    width:82px;
+    height: 31px;
+    line-height: 31px;
+    border: 1px solid #eee;
+    border-left: none;
+    font-weight: bold;
+    background: #fafafa;
+    overflow: hidden;
+    position: relative;
+}
+ul.tabs li.active {
+    background: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+.tab_container {
+    border: 1px solid #eee;
+    border-top: none;
+    clear: both;
+    float: left;
+    width: 248px;
+    background: #FFFFFF;
+}
+.tab_content {
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+.tab_container .tab_content ul {
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.tab_container .tab_content ul li {
+    padding:5px;
+    list-style:none
+}
+;
+ #container {
+    width: 249px;
+    margin: 0 auto;
+}
+
+div#field_name ul {
+    padding-top:10px;
+} /* 상단 여백 10px */
+
+div#field_name ul li { 
+    display:inline; /* 세로나열을 가로나열로 변경 */ 
+    border-left:1px solid #999; /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */ 
+    font:bold 12px Dotum; /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */ 
+    padding:0 10px; /* 각 메뉴 간격 */ 
+}
+
+div#field_data ul {
+    padding-top:10px;
+} /* 상단 여백 10px */
+
+div#field_data ul li { 
+    display:inline; /* 세로나열을 가로나열로 변경 */ 
+    border-left:1px solid #999; /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */ 
+    font:bold 12px Dotum; /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */ 
+    padding:0 10px; /* 각 메뉴 간격 */ 
+}

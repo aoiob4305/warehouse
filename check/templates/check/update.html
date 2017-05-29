@@ -1,17 +1,16 @@
 {% extends 'check/base.html' %}
 
-{% load bootstrap3 %}
+{% load static %}
 
 {% block content %}
 <form action="/ware/update/" method="post" enctype="multipart/form-data"> 
     {% csrf_token %}
     {{ form.as_p }}
-<!--    <input type="submit" value="Update">
--->
-	{% bootstrap_button "upload" button_type="submit" %}
+	<input type="submit" value="Upload">
 </form>
 
-<div id="update">
+<div id="results">
+    {% if results|length != 0 %}
         <strong> 업데이트 결과 </strong>
         {% for result in results %}
             <ul>{% cycle '신규' '업데이트' '값에러' '필드에러' %} {{ result }}</ul>
@@ -20,5 +19,6 @@
 		{% for error in errors %}
             <ul>{{ errors }}</ul>
         {% endfor %}
+    {% endif %}
 {% endblock %}
 </div>

@@ -1,46 +1,36 @@
 <!doctype html>
 {% load static %}
-{% load bootstrap3 %}
-
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{% bootstrap_messages %}
 
 <html lang=ko>
     <head>
-        <title>Main Page</title>
+        <title>재고 검색</title>
         <meta charset="utf-8">
-<!--        <link rel="stylesheet" href="{% static 'css/style.css' %}">
--->
-        <header id="page_header">
-            <h2>재고검색</h2>
-            <nav>
-                <a href="/ware/">Main</a>
-                <a href="/ware/search/">검색</a>
-                <a href="/ware/update/">업데이트</a>
-            </nav>
-        </header>
+        <meta name="viewport" content="width=device-width user-scalable=no initial-scale=1">
+        <link rel="stylesheet" href="http://kimyoungwook.com/static/css/style.css">
+        <script src="http://kimyoungwook.com/static/js/jquery-3.2.1.min.js"></script>
+        {% block javascript %}
+        {% endblock %}
     </head>
     <body>
-<!--        <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}">
-        </script>
--->
-        <script>
-            {% block script %}
-            {% endblock %}
-        </script>
-
         <section id="sidebar">
             <header>
             </header>
-            <nav>
-            </nav>
+            <footer>
+            </footer>
         </section>
 
         <section id="content">
             <header>
+                <nav>
+                    <h2><strong>예비품 창고 검색</strong></h2>
+                    <ul class="tabs">
+                        <li><a href="/ware/">메인</a></li>
+                        <li><a href="/ware/search">검색</a></li>
+                        <li><a href="/ware/update">업데이트</a></li>
+                    </ul>
+                </nav>
             </header>
+            <br />
             <article class="content">
             {% block content %}
             {% endblock %}
@@ -50,6 +40,11 @@
         </section>
 
         <footer id="page_footer">
+            <hr>
+            <p>
+                <h4>품번 검색 방법</h4>
+                /search/?query_plant=1100&query_type=no&query_text=GE450201705120013&query_num=0
+            </p>
         </footer>
     </body>
 </html>

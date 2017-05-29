@@ -1,29 +1,32 @@
 {% extends 'check/base.html' %}
 
-{% load bootstrap3 %}
+{% load static %}
 
 {% block content %}
-<form action="/ware/search/" method="post"> 
+<form action="/ware/search/" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-<!--    <input type="submit" value="Search"> -->
-	{% bootstrap_button "Search" button_type="submit" %}
+	<input type="submit" value="Search" onclick="showResults(false)">
 </form>
-<br>
-<p><strong> 검색결과: {{ results|length }} 개</strong></p>
-<table id="search">
-        {% if result != null %}
+<br />
+<div id="results">
+    {% if results_num != 0 %}
+    <p><strong> 검색결과: {{ results_num }} 개</strong></p>
+    <table id="search">
+        {% if results != null %}
             <tr id="field_name">
+				<td>플랜트</td>
                 <td>품번</td>
                 <td>품명</td>
                 <td>세부내역</td>
                 <td>저장빈</td>
                 <td>수량</td>
-                <td>업데이트</td>
+                <td>업데이트일자</td>
             </tr>
 		{% endif %}
         {% for result in results %}
             <tr>
+                <td>{{ result.Plnt }}</td>
                 <td>{{ result.no }}</td>
                 <td>{{ result.name }}</td>
                 <td>{{ result.description }}</td>
@@ -32,5 +35,8 @@
                 <td>{{ result.updateDate }}</td>
             </tr>
         {% endfor %}
+    </table>
+    {% endif %}
+</div>
 {% endblock %}
-</table>
+

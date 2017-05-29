@@ -1,16 +1,39 @@
 {% extends 'check/base.html' %}
+{% load static %}
+
 {% block content %}
-<!--
-<form action="/ware/search/" method="post"> 
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Search">
-</form>
--->
-<br />
 
 <div>
-    {{ results }}
+<div id="results">
+    <p><strong>총 재고 개수 : {{ results_num }} 종</strong></p>
+    <p>최근 변동 내용</p>
+    <div id="search">
+        {% if results != null %}
+        <div id="field_name">
+            <ul>
+				<li>플랜트</li>
+                <li>품번</li>
+                <li>업데이트일자</li>
+                <li>품명</li>
+                <li>세부내역</li>
+                <li>저장빈</li>
+                <li>수량</li>
+            </ul>
+        </div>
+		{% endif %}
+        <div id="field_data">
+        {% for result in results %}
+            <ul>
+                <li>{{ result.Plnt }}</li>
+                <li>{{ result.no }}</li>
+                <li>{{ result.updateDate }}</li>
+                <li>{{ result.name }}</li>
+                <li>{{ result.description }}</li>
+                <li>{{ result.slot }}</li>
+                <li>{{ result.amount }}</li>
+            </ul>
+        {% endfor %}
+        </div>    
 </div>
 
 {% endblock %}
